@@ -251,3 +251,27 @@ void tuplesExample()
 
   size_t nFields = std::tuple_size_v<UserInfo>;
 }
+
+template< typename T >
+CString intToHex(T i)
+{
+  std::stringstream stream;
+  stream << "0x"
+    << std::setfill('0') << std::setw(sizeof(T) * 2)
+    << std::hex << i;
+  return stream.str().c_str();
+}
+
+void parseAndScanExample()
+{
+  INT64 i = 0x00000196537f6710;
+  CString str;
+  str.Format(L"{%x}", i);
+
+  std::cout << str << "\n"; //{0x00000196537f6710}
+
+  INT64 ptr = 0;
+  swscanf_s(str.GetString(), L"{%I64x}", &ptr);
+
+  std::cout << ptr << "\n"; // 0x00000196537f6710
+}

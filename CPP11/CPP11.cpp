@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <ios>
 #include <sstream>
+#include <map>
 
 #include "OtherExamples.h"
 #include "Templates.h"
@@ -15,16 +16,6 @@ using namespace std;
 
 void autoExample();
 void r_l_values();
-
-template< typename T >
-CString intToHex(T i)
-{
-  std::stringstream stream;
-  stream << "0x"
-    << std::setfill('0') << std::setw(sizeof(T) * 2)
-    << std::hex << i;
-  return stream.str().c_str();
-}
 
 int main()
 {
@@ -41,12 +32,6 @@ int main()
   */
   //tuplesExample();
 
-  INT64 i = 0x00000196537f6710;
-  CString str;
-  str.Format(L"{%x}", i);
-
-  INT64 ptr = 0;
-  swscanf_s(str.GetString(), L"{%I64x}", &ptr);
 
   //str = intToHex(i);
 
@@ -97,3 +82,11 @@ void r_l_values()
 }
 
 static int* tNull = nullptr;
+
+void rangeBasedLoop()
+{
+  std::map<int, std::string> numberMap;
+  for (auto val: numberMap) {}
+
+  for (auto i : {1, 2, 3}) {}
+}
