@@ -35,7 +35,9 @@ int main()
 
   //str = intToHex(i);
 
-  int t = 0;
+  OMPExample();
+
+  system("pause");
 }
 
 /* auto

@@ -3,6 +3,9 @@
 #include <chrono>
 #include <future>
 #include <iostream>
+#include <chrono>
+
+using namespace std::chrono;
 
 int performLongComputation()
 {
@@ -78,4 +81,25 @@ void safeVectorTest()
   v.pushBack('a');
   char ch = v[0];
   std::cout << ch << "\n";
+}
+
+/*
+  To use OMP in Visual studio need to enable it in the 
+  Project -> Properties -> C/C++ -> Language -> Open MP Support
+*/
+void OMPExample()
+{
+  auto start = system_clock::now();
+
+#pragma omp parallel for
+  for (int x = 0; x < 4; x++) {
+    std::this_thread::sleep_for(milliseconds(1000));
+  }
+
+  auto end = system_clock::now();
+  auto diff = (end - start).count();
+
+  std::cout << "Elapsed time: " << diff << "\n";
+
+  int t = 0;
 }
