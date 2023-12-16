@@ -83,11 +83,7 @@ void safeVectorTest()
   std::cout << ch << "\n";
 }
 
-/*
-  To use OMP in Visual studio need to enable it in the 
-  Project -> Properties -> C/C++ -> Language -> Open MP Support
-*/
-void OMPExample()
+void OMPBaseExample()
 {
   auto start = system_clock::now();
 
@@ -102,4 +98,46 @@ void OMPExample()
   std::cout << "Elapsed time: " << diff << "\n";
 
   int t = 0;
+}
+
+void OMPAtomic()
+{
+  int incement = 0;
+#pragma omp parallel for
+  for (int x = 0; x < 100; x++) {
+#pragma omp atomic
+    incement++;
+  }
+
+  std::cout << "Atomic incement: " << incement << "\n";
+}
+
+void OMPCritical()
+{
+  int incement = 0;
+#pragma omp parallel for
+  for (int x = 0; x < 100; x++) 
+  {
+    #pragma omp critical
+    {
+      int a = incement;
+      a++;
+      incement = a;
+    }
+  }
+
+  std::cout << "Critical incement: " << incement << "\n";
+}
+
+/*
+  To use OMP in Visual studio need to enable it in the
+  Project -> Properties -> C/C++ -> Language -> Open MP Support
+
+  #pragma omp barrier - force threads wait until all concurrent threads reach this line
+*/
+void OMPExamples()
+{
+  //OMPBaseExample();
+  OMPAtomic();
+  OMPCritical();
 }
