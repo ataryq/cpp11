@@ -32,5 +32,8 @@
     <ClInclude Include="Multithreading.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MoveSemantic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -144,6 +144,7 @@
     <ClCompile Include="Multithreading.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MoveSemantic.h" />
     <ClInclude Include="Multithreading.h" />
     <ClInclude Include="OtherExamples.h" />
     <ClInclude Include="Templates.h" />
